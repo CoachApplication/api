@@ -1,5 +1,6 @@
 package application
 
+// SimpleBuilders A simple Builders implementation that maintains an ordered list
 type SimpleBuilders struct {
 	bMap map[string]Builder 
 	bOrder []string
@@ -7,7 +8,7 @@ type SimpleBuilders struct {
 
 // Add a new builder to the ordered set
 func (sb *SimpleBuilders) Add(b Builder) {
-	key := b.Id*()
+	key := b.Id()
 	if _, found := sb.bMap[key]; !found {
 		sb.bOrder = append(sb.bOrder, key)
 	}
@@ -17,10 +18,10 @@ func (sb *SimpleBuilders) Add(b Builder) {
 // Get a builder that matches a key from the set
 func (sb *SimpleBuilders) Get(key string) (Builder, error) {
 	sb.safe()
-	if b, found := sb.bMap[key]; b {
+	if b, found := sb.bMap[key]; found {
 		return b, nil
 	} else {
-		return b, error(&BuilderNotFound{key:key})
+		return b, error(&BuilderNotFoundError{key:key})
 	}
 }
 
@@ -30,24 +31,10 @@ func (sb *SimpleBuilders) Order() []string {
 	return sb.bOrder
 }
 
-// safe intitializer
+// safe initializer
 func (sb *SimpleBuilders) safe() {
-	if builders.bOrder == nil {
-		builders.bMap = map[string]Builder{}
-		builders.bOrder = []string{}
+	if sb.bOrder == nil {
+		sb.bMap = map[string]Builder{}
+		sb.bOrder = []string{}
 	}
-}
-
-/**
- * Errors 
- */
-
-// BuilderNotFoundError for when a builder key does not exist in the list
-type BuilderNotFoundError struct {
-	key string
-}
-
-// Error string return (interface: error)
-func (bnf *BuilderNotFoundError) Error() string {
-	return "Builder not found: "+bnf.key
 }

@@ -1,6 +1,6 @@
 package property
 
-// Properties an ordered map of propeties
+// Properties an ordered map of properties
 type Properties interface {
 	// Add adds a new property to the list, keyed by property id
 	Add(Property)

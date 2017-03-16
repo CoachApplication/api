@@ -1,7 +1,7 @@
 package result
 
 import (
-	api_property
+	api_property "github.com/james-nesbitt/coach-api/property"
 )
 
 // StandardResult is as default Result implementation
@@ -18,13 +18,13 @@ func NewStandardResult() *StandardResult {
 		errors: []error{},
 		success: true, // default to successful
 		finished: []chan bool{},
-		properties: api_property.NewSimplePropertiesEmpty().Properties(),
+		properties: api_property.NewSimpleProperties().Properties(),
 	}
 }
 
 // Result explicitly converts this struct to the Result interface (for clarity and validation)
-func (sr *StandardResult) Result() api_result.Result {
-	return api_result.Result(sr)
+func (sr *StandardResult) Result() Result {
+	return Result(sr)
 }
 
 /**
@@ -38,13 +38,13 @@ func (sr *StandardResult) Errors() []error {
 
 // Finished returns a tracking bool channel that can be used to mark when the operation is completed
 func (sr *StandardResult) Finished() chan bool {
-	finished = make(chan bool)
+	finished := make(chan bool)
 	sr.finished = append(sr.finished, finished)
 	return finished
 }
 
 // Success returns a boolean success value
-func (sr *StandardResult) Success() bool) {
+func (sr *StandardResult) Success() bool {
 	return sr.success
 }
 
@@ -58,7 +58,7 @@ func (sr *StandardResult) Properties() api_property.Properties {
  */
 
 // AddError adds an Error to the result
-func (sr *StandardResult) AddError(err Error) {
+func (sr *StandardResult) AddError(err error) {
 	sr.errors = append(sr.errors, err)
 }
 
@@ -88,7 +88,7 @@ func (sr *StandardResult) Merge(merge Result) {
 	if !merge.Success() {
 		sr.MarkFailed()
 	}
-	for _, err := merge.Errors() {
+	for _, err := range merge.Errors() {
 		sr.AddError(err)
 	}
 }

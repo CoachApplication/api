@@ -4,21 +4,26 @@ import (
 	"error"
 )
 
-// SimpleProperties is a simple Properties impementation that keeps an ordered list of Properties
+// SimpleProperties is a simple Properties implementation that keeps an ordered list of Properties
 type SimpleProperties struct {
-	pMap map[string]property
+	pMap map[string]Property
 	pOrder []string
 }
 
 // NewSimpleProperties is a SimpleProperties constructor
-func SimpleProperties() *SimpleProperties {
+func NewSimpleProperties() *SimpleProperties {
 	return &SimpleProperties{}
+}
+
+// Properties converts this to the Properties interface explicitly
+func (sp *SimpleProperties) Properties() Properties {
+	return Properties(sp)
 }
 
 // Add adds a new property to the list, keyed by property id
 func (sp *SimpleProperties) Add(prop Property) {
 	sp.safe()
-	key = prop.Id()
+	key := prop.Id()
 	if _, found := sp.pMap[key]; !found {
 		sp.pOrder = append(sp.pOrder, key)
 	}
@@ -29,9 +34,9 @@ func (sp *SimpleProperties) Add(prop Property) {
 func (sp *SimpleProperties) Get(key string) (Property, error) {
 	sp.safe()
 	if prop, found := sp.pMap[key]; found {
-		prop, nil
+		return prop, nil
 	} else {
-		return prop, error.Error(&PropertyNotFoundError{key: key})
+		return prop, &PropertyNotFoundError{key: key}
 	}
 }
 
