@@ -12,6 +12,9 @@ type Property interface {
 	// Id provides a machine name string for the property.  This should be uniquein an operation.
 	Id() string
 
+	// Type string label for content type of property value
+	Type() string
+
 	// Ui Provide UI metadata for the Property
 	Ui() Ui
 

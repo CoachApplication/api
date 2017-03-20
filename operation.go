@@ -8,7 +8,7 @@ package api
  */
 type Operation interface {
 
-	// Id
+	// Id Unique string machine name identifier for the Operation
 	Id() string
 
 	// UI Return a UI interaction definition for the Operation
