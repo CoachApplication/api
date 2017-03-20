@@ -1,6 +1,6 @@
-package property
+package api
 
-// Properties an ordered map of properties
+// Properties an ordered map of propeties
 type Properties interface {
 	// Add adds a new property to the list, keyed by property id
 	Add(Property)

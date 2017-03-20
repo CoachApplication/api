@@ -1,4 +1,4 @@
-package application
+package api
 
 // Builders provides an ordered set of keyed builders
 type Builders interface {

@@ -1,11 +1,4 @@
-package operation
-
-import (
-	api_property "github.com/james-nesbitt/coach-api/property"
-	api_result "github.com/james-nesbitt/coach-api/result"
-	api_ui "github.com/james-nesbitt/coach-api/ui"
-	api_usage "github.com/james-nesbitt/coach-api/usage"
-)
+package api
 
 /**
  * Operation individual API action
@@ -15,11 +8,20 @@ import (
  */
 type Operation interface {
 
+	// Id
 	Id() string
 
-	Metadata() api_ui.Metadata
+	// UI Return a UI interaction definition for the Operation
+	Ui() Ui
 
-	Usage() api_usage.Usage
+	// Usage Define how the Operation is intended to be executed.
+	Usage() Usage
+
+	// Properties provide the expected Operation with default values
+	Properties() Properties
+
+	// Validate Validate that the Operation can Execute if passed proper Property data
+	Validate() Result
 
 	/**
 	 * Exec runs the operation from a Properties set, and return a result
@@ -30,6 +32,5 @@ type Operation interface {
 	 * Exec receives a Properties list that it should consider disposable.  This is by design so that any Operation
 	 * consumer can reused the Properties object for subsequent calls, which may run in parrallel.
 	 */
-	Exec(api_property.Properties) api_result.Result
-
+	Exec(Properties) Result
 }

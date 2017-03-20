@@ -1,9 +1,4 @@
-package property
-
-import (
-	api_ui "github.com/james-nesbitt/coach-api/ui"
-	api_usage "github.com/james-nesbitt/coach-api/usage"
-)
+package api
 
 /**
  * Property is a single variable used to configure an operation during it's Exec.
@@ -17,11 +12,14 @@ type Property interface {
 	// Id provides a machine name string for the property.  This should be uniquein an operation.
 	Id() string
 
-	// Ui Provude UI metadata for the Property
-	Ui() api_ui.Metadata
+	// Ui Provide UI metadata for the Property
+	Ui() Ui
 
 	// Usage Provide Usage information about the element
-	Usage() api_usage.Usage
+	Usage() Usage
+
+	// Validate Check that the property is properly configured
+	Validate() Result
 
 	// Get retrieve a value from the Property
 	Get() interface{}

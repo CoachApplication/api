@@ -1,10 +1,4 @@
-package application
-
-import (
-	api_api "github.com/james-nesbitt/coach-api/api"
-	api_operation "github.com/james-nesbitt/coach-api/operation"
-	api_result "github.com/james-nesbitt/coach-api/result"
-)
+package api
 
 /**
  * Builder is a tool provided by a handler (a 3rd party coach package) which can be used to build up lists of operations
@@ -20,11 +14,11 @@ type Builder interface {
 	// Id provides a unique machine name for the Builder
 	Id() string
 	// SetParent Provides the API reference to the Builder which may use it's operations internally
-	SetParent(api_api.API)
+	SetParent(API)
 	// Activate Enable keyed implementations, providing settings for those handler implementations
 	Activate([]string, SettingsProvider) error
 	// Validates Ask the builder if it is happy and willing to provide operations
-	Validate() api_result.Result
+	Validate() Result
 	// Operations provide any Builder user with a set of Operation objects
-	Operations() api_operation.Operations
+	Operations() Operations
 }

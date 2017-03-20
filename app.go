@@ -1,9 +1,4 @@
-package application
-
-import (
-	api_operation "github.com/james-nesbitt/coach-api/operation"
-	api_result "github.com/james-nesbitt/coach-api/result"
-)
+package api
 
 /**
  * Application provide the API part of a built application.
@@ -22,7 +17,11 @@ type Application interface {
 	Activate(string, []string, SettingsProvider) error
 
 	// Validate Ask if the Application is ready to provide Operations
-	Validate() api_result.Result
+	Validate() Result
 	// Operations Retrieve a list of Operations from all of the Builders
-	Operations() api_operation.Operations
+	Operations() Operations
+}
+
+type SettingsProvider interface {
+	Apply(interface{}) error
 }
