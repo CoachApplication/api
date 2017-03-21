@@ -9,7 +9,7 @@ package api
  * Property, like Operation, is meant to be usable with any API consumer UI, and therefore provides
  */
 type Property interface {
-	// Id provides a machine name string for the property.  This should be uniquein an operation.
+	// Id provides a machine name string for the property.  This should be unique in an operation.
 	Id() string
 
 	// Type string label for content type of property value
