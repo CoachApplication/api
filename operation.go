@@ -21,7 +21,7 @@ type Operation interface {
 	Properties() Properties
 
 	// Validate Validate that the Operation can Execute if passed proper Property data
-	Validate() Result
+	Validate(Properties) Result
 
 	/**
 	 * Exec runs the operation from a Properties set, and return a result
