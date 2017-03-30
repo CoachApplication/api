@@ -22,7 +22,7 @@ type Property interface {
 	Usage() Usage
 
 	// Validate Check that the property is properly configured
-	Validate() Result
+	Validate() bool
 
 	// Get retrieve a value from the Property
 	Get() interface{}
