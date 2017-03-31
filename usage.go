@@ -6,11 +6,11 @@ const (
 	 *
 	 * These are typically used keys that are testd in an application
 	 */
-	UsageOperationPublicView = "operation.public.view"
+	UsageOperationPublicView    = "operation.public.view"
 	UsageOperationPublicExecute = "operation.public.exec"
 
-	UsagePropertyPublicView = "property.public.view"
-	UsagePropertyPublicWrite = "property.public.write"
+	UsagePropertyPublicView     = "property.public.view"
+	UsagePropertyPublicWrite    = "property.public.write"
 	UsagePropertyPublicRequired = "property.public.required"
 )
 
